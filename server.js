@@ -20,10 +20,9 @@ connection.connect();
 const produto = Produto(connection);
 
 app.post('/produto/', produto.insert);
-app.put('/produto/', produto.update);
+app.put('/produto/:id', produto.update);
 app.delete('/produto/', produto.remove);
-// app.get('/produto/', produto.select);
-
+app.get('/produto/', produto.selectAll); 
 app.get('/produto/:ean',produto.select)
 
 
