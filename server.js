@@ -21,7 +21,7 @@ const produto = Produto(connection);
 
 app.post('/produto/', produto.insert);
 app.put('/produto/:id', produto.update);
-app.delete('/produto/', produto.remove);
+app.delete('/produto/:id', produto.remove);
 app.get('/produto/', produto.selectAll); 
 app.get('/produto/:ean',produto.select)
 
