@@ -1,5 +1,6 @@
 function Produto(connection) {
     return {
+
         insert: (req, res) => {
             const produto = req.body;
             connection.query(`insert into produtos set ?`, produto, (error, results, fields) => {
@@ -9,9 +10,10 @@ function Produto(connection) {
                     res.send({message: 'produto incluido com sucesso'})
                  }
             })
+
         }, remove: (req, res) => {
             const { id }  =  req.params;
-            connection.query(`delete produtos where id_produto = ${id}`, (error, results, fields) => {
+            connection.query(`delete from produtos where id_produto = ${id}`, (error, results, fields) => {
                 if (error ) {
                     res.send({error: error })
                  } else {
@@ -46,7 +48,9 @@ function Produto(connection) {
                      }
                 })
             }
-        }, selectAll: ( req, res) => {
+
+        }, selectAll: (req, res) => {
+
             connection.query("select * from produtos ", (error, results, fields) => {
                     if (error ) {
                         res.send({error: error })

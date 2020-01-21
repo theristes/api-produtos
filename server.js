@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const mysql = require('mysql');
 const Produto = require('./produto');
+const fetch = require('node-fetch');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,6 +17,7 @@ const connection = mysql.createConnection({
   });
 
 connection.connect();
+
 
 const produto = Produto(connection);
 
