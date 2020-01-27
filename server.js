@@ -3,10 +3,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const mysql = require('mysql');
 const Produto = require('./produto');
-const fetch = require('node-fetch');
+const basicAuth = require('express-basic-auth')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+ 
+app.use(basicAuth({ users: { 'admin': 'supersecret' } }))
+
+
 app.set('port', process.env.PORT || 2888); 
 
 const connection = mysql.createConnection({
@@ -18,15 +22,13 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-
 const produto = Produto(connection);
 
 app.post('/produto/', produto.insert);
 app.put('/produto/:id', produto.update);
 app.delete('/produto/:id', produto.remove);
 app.get('/produto/', produto.selectAll); 
-app.get('/produto/:ean',produto.select)
-
+app.get('/produto/:ean',produto.select);
 
 const http = require('http');
 const server = http.createServer(app);
