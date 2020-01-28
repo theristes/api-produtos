@@ -58,6 +58,15 @@ function Produto(connection) {
                         res.send({produtos: results})
                      }
             })
+        }, selectCfopCst: (req, res) => {
+            const { cfop, cst } = req.params;
+                connection.query(`select * from produtos where cfop = ${cfop} and cst= ${cst}`, (error, results, fields) => {
+                if (error ) {
+                    res.send({error: error })
+                } else {
+                    res.send({produtos : results})
+                }
+            })
         }
     }
 }
