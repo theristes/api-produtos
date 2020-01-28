@@ -1,16 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const mysql = require('mysql');
 const Produto = require('./produto');
 const Authorization = require('./http-auth');
-
-const connection = mysql.createConnection({
-  host     : 'coopersoft.com.br',
-  user     : 'coope904_api',
-  password : 'api2020',
-  database : 'coope904_api'
-});
+const connection = require('./connection')(); // Já etou executando;
 
 connection.connect();
 
